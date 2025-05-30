@@ -1,0 +1,46 @@
+services:
+  backend:
+    container_name: minibank-backend
+    build:
+      context: ./server
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server:/app
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongo:27017/minibank
+      - JWT_SECRET=supersecretkey
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:5
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: echo "rs.initiate()" | mongosh --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  client:
+    container_name: minibank-client
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+volumes:
+  mongo_data:
