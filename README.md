@@ -14,8 +14,6 @@ MiniBank is a full-stack banking simulation app built with **React**, **Node.js*
 
 ## 🚀 Demo URLs
 
-> Replace with actual deployment links if hosted
-
 - Frontend: [http://localhost:3000](http://localhost:3000)
 - Backend: [http://localhost:5000/api](http://localhost:5000/api)
 - API Docs (Swagger): [http://localhost:5000/api-docs](http://localhost:5000/api-docs)
@@ -81,28 +79,32 @@ MiniBank is a full-stack banking simulation app built with **React**, **Node.js*
 docker-compose up --build
 ```
 
-This spins up:
+## This spins up:
 
-React app at http://localhost:3000
+- React app at http://localhost:3000
 
-Express API at http://localhost:5000
+- Express API at http://localhost:5000
 
-MongoDB with Replica Set enabled
+- MongoDB with Replica Set enabled
 
-🧪 Testing
+## 🧪 Testing
+
 Backend
 
+```bash
 cd server
 npm install
 npm test
+```
 
-Tests written using:
+## Tests written using (Backend):
 
 Jest
 Supertest
 MongoMemoryServer
+React Testing Library (Frontend)
 
-🗂 Folder Structure
+## 🗂 Folder Structure
 
 Mini Bank/
 ├── client/ # React Frontend
